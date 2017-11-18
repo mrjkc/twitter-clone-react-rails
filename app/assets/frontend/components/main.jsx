@@ -1,5 +1,13 @@
 import TweetBox from "./components/TweetBox";
 import TweetList from "./components/TweetList";
+import TweetStore from "./stores/TweetStore;"
+
+import TweetActions from "./actions/TweetActions";
+TweetActions.getAllTweets();
+
+let getAppState = () => {
+  return { tweetsList: TweetStore.getAll() };
+}
 
 // design to get tweets from datasource
 //let mockTweets = [
@@ -11,7 +19,8 @@ import TweetList from "./components/TweetList";
 class Main extends React.Component {
     constructor(props) {
       super(props);
-      this.state = { tweetsList: [] }
+      this.state = getAppState();
+      this._onChange = this._onChange.bind(this);
     }
     formattedTweets(tweetsList) {
       let formattedList = tweetsList.map(tweet => {
@@ -33,9 +42,15 @@ class Main extends React.Component {
       .error(error => console.log(error))
     }
     componentDidMount() {
-      $.ajax("/tweets")
-      .success(data => this.setState(this.formattedTweets(newTweetsList)))
-      .error(error => console.log(error))
+      TweetStore.addChageListener(this._onChange)
+    }
+
+    componentWillUnmount() {
+      TweetStore.removeChageListener(this._onChange)
+    }
+    _onChage() {
+      console.log(5, "Main._onChage")
+      this.setState(getAppState());
     }
     render() {
         return (

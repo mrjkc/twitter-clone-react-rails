@@ -22,15 +22,6 @@ class Main extends React.Component {
       this.state = getAppState();
       this._onChange = this._onChange.bind(this);
     }
-    formattedTweets(tweetsList) {
-      let formattedList = tweetsList.map(tweet => {
-        tweet.formattedDate = moment(tweet.created_at).fromNow();
-        return tweet;
-      })
-      return {
-        tweetsList: formattedList
-      }
-    }
     addTweet(tweetToAdd) {
       $.post("/tweets", { body: tweetToAdd })
       .success(savedTweet => {
@@ -42,20 +33,20 @@ class Main extends React.Component {
       .error(error => console.log(error))
     }
     componentDidMount() {
-      TweetStore.addChageListener(this._onChange)
+      TweetStore.addChageListener(this._onChange);
     }
 
     componentWillUnmount() {
-      TweetStore.removeChageListener(this._onChange)
+      TweetStore.removeChageListener(this._onChange);
     }
     _onChage() {
-      console.log(5, "Main._onChage")
+      console.log(5, "Main._onChage");
       this.setState(getAppState());
     }
     render() {
         return (
           <div className="container">
-            <TweetBox sendTweet={this.addTweet.bind(this)}/>
+            <TweetBox />
             <TweetList tweets={mockTweets} />
           </div>
         );

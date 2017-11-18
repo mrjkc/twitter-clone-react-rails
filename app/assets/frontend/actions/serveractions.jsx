@@ -12,5 +12,11 @@ export default {
         //data object
         rawTweets
       });
+  },
+  receivedOneTweet(rawTweet) {
+    AppDispatcher.dispatch({
+      actionType: ActionTypes.RECEIVED_ONE_TWEET,
+      rawTweet
+    });
   }
 }

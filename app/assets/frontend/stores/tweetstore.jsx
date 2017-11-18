@@ -37,8 +37,11 @@ AppDispatcher.register( action => {
       // and tell everyone that data changed with event emiter
       _tweets = action.rawTweets;
       TweetStore.emitChange();
-
       break;
+    case ActionTypes.RECEIVED_ONE_TWEET:
+        // prepend to our array of tweets
+        _tweets.unshift(action.raw);
+        TweetStore.emitChange();
     default:
       // no op
   }

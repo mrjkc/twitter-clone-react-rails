@@ -3,8 +3,9 @@ export default class Tweet React.Component {
     return {
       <div>
           <li className="collection-item avatar">
-            <i className="material-icons circle">
+            <img className="circle" src={this.props.gravatar} />
             <span className="title">{this.props.name}</span>
+            <time>{this.props.formattedDate}</time>
             <p>{this.props.body}</p>
           </li>
       </div>

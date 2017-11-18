@@ -5,7 +5,7 @@ export default class Tweet React.Component {
           <li className="collection-item avatar">
             <i className="material-icons circle">
             <span className="title">{this.props.name}</span>
-            <p>{this.props.body}  </p>
+            <p>{this.props.body}</p>
           </li>
       </div>
     }

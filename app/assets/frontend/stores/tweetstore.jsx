@@ -1,12 +1,12 @@
 import React from 'react';
 import AppDispatcher from "../dispatcher";
 import ActionTypes from "../constants";
-import { EventEmitter } from "events"; //not a default export therefore curly braces and path are different
+import AppEventEmitter from "./AppEventEmitter";
+//import { EventEmitter } from "events"; //not a default export therefore curly braces and path are different
 
 let _tweets = [];
-const CHANGE_EVENT = "CHANGE";
 
-class TweetEventEmitter extends EventEmitter {
+class TweetEventEmitter extends AppEventEmitter {
   getAll() {
     return _tweets.map(tweet => {
       tweet.formattedDate = moment(tweet.created_at).fromNow();
@@ -14,17 +14,6 @@ class TweetEventEmitter extends EventEmitter {
     });
     return _tweets;
   }
-  emitChange() {
-    this.emit(CHANGE_EVENT);
-  }
-  addChageListener(callback) {
-    this.on(CHANGE_EVENT, callback);
-  }
-  removeChageListener(callback) {
-    // stop listening for this change event
-    this.removeListener(CHANGE_EVENT, callback);
-  }
-
 }
 
 let TweetStore = new TweetEventEmitter();

@@ -19,5 +19,16 @@ export default {
       actionType: ActionTypes.RECEIVED_ONE_TWEET,
       rawTweet
     });
+  },
+  receivedUsers(rawUsers) {
+    console.log(3, "ServerActions.receivedUsers");
+    // app dispatcher
+    // will label data
+      AppDispatcher.dispatch({
+        //label
+        actionType: ActionTypes.RECEIVED_USERS,
+        //data object
+        rawUsers
+      });
   }
 }

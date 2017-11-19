@@ -1,3 +1,4 @@
+import React from 'react';
 import AppDispatcher from "../dispatcher";
 import ActionTypes from "../constants";
 

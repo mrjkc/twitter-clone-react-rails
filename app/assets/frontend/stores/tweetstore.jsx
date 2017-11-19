@@ -1,3 +1,4 @@
+import React from 'react';
 import AppDispatcher from "../dispatcher";
 import ActionTypes from "../constants";
 import { EventEmitter } from "events"; //not a default export therefore curly braces and path are different

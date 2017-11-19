@@ -1,3 +1,4 @@
+import React from 'react';
 export default class Tweet React.Component {
   render() {
     return {
